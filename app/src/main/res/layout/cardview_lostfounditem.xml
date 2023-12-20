@@ -26,12 +26,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/pref"
+                android:id="@+id/itemName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="left"
-                android:text="@string/preference"
+                android:text="@string/itemName"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:paddingStart="5dp"
@@ -40,7 +40,7 @@
                 android:paddingBottom="5dp"/>
 
             <TextView
-                android:id="@+id/prefA"
+                android:id="@+id/itemNameA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -60,12 +60,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/subj"
+                android:id="@+id/desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="left"
-                android:text="@string/subjects"
+                android:text="@string/description"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:paddingStart="5dp"
@@ -74,7 +74,7 @@
                 android:paddingBottom="5dp"/>
 
             <TextView
-                android:id="@+id/subjA"
+                android:id="@+id/descA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -94,12 +94,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/hobby"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="left"
-                android:text="@string/hobbies"
+                android:text="@string/dateFound"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:paddingStart="5dp"
@@ -108,7 +108,41 @@
                 android:paddingBottom="5dp"/>
 
             <TextView
-                android:id="@+id/hobbyA"
+                android:id="@+id/dateA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="left"
+                android:text="desc"
+                android:textColor="@color/black"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="left"
+                android:text="@string/locationFound"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/locationA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -124,12 +158,12 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/reco"
+            android:id="@+id/collection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:gravity="left"
-            android:text="@string/recommended_degrees"
+            android:text="@string/currentLocation"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:paddingStart="5dp"
@@ -138,7 +172,7 @@
             android:paddingBottom="5dp"/>
 
         <TextView
-            android:id="@+id/recoA"
+            android:id="@+id/collectionA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
