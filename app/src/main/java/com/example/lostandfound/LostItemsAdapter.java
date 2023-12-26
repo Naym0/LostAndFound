@@ -7,43 +7,50 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.util.ArrayList;
 
-public class LostItemsAdapter extends RecyclerView.Adapter<LostItemsAdapter.MyViewHolder> {
-    private Context mContext;
-    private ArrayList<String> mData = new ArrayList<>();
-    private static final String TAG = "GETTING SELECTED DATA!!!!!!";
+public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, LostItemsAdapter.MyViewHolder>  {
 
-    public LostItemsAdapter(Context mContext, ArrayList<String> mData){
-        this.mContext = mContext;
-        this.mData = mData;
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+         * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public LostItemsAdapter(FirestoreRecyclerOptions<LostItems_data> options) {
+        super(options);
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        LayoutInflater mInflater = LayoutInflater.from(mContext);
+        LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
         view = mInflater.inflate(R.layout.cardview_lostfounditem,parent,false);
         return new LostItemsAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.degree.setText(mData.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mData.size();
+    protected void onBindViewHolder(MyViewHolder holder, int position, LostItems_data model) {
+        holder.item.setText(model.getItem());
+        holder.description.setText(model.getDesc());
+        holder.category.setText(model.getCategory());
+        holder.dateFound.setText(model.getDate());
+        holder.location.setText(model.getLocation());
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView degree;
+        TextView item, description, category, dateFound, location;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            degree = itemView.findViewById(R.id.itemName);
+            item = itemView.findViewById(R.id.itemNameA);
+            description = itemView.findViewById(R.id.descA);
+            category = itemView.findViewById(R.id.categoryA);
+            dateFound = itemView.findViewById(R.id.dateA);
+            location = itemView.findViewById(R.id.collectionA);
         }
     }
 }
