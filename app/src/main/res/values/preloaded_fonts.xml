@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/dancing_script_bold</item>
+        <item>@font/homemade_apple</item>
+        <item>@font/la_belle_aurore</item>
+        <item>@font/leckerli_one</item>
+        <item>@font/lobster_two_italic</item>
+        <item>@font/sofia</item>
+    </array>
+</resources>
