@@ -3,6 +3,7 @@
     package="com.example.lostandfound">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -13,10 +14,7 @@
             android:name=".MainActivity"
             android:exported="true"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".Register"
@@ -33,12 +31,22 @@
         <activity
             android:name=".LostItems"
             android:exported="true"
+            android:theme="@style/AppTheme1"
+            />
+        <activity
+            android:name=".Profile"
+            android:exported="true"
+            android:theme="@style/AppTheme1"
             />
         <activity
             android:name=".Path"
             android:exported="true"
-            android:theme="@style/AppTheme1"
-        />
+            android:theme="@style/AppTheme1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
