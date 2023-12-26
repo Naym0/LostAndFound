@@ -142,11 +142,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/dateFound"
+                    android:text="Upload Image"
                     android:textSize="15sp"
                     android:textColor="@color/black"/>
 
+                <Button
+                    android:id="@+id/takePic"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/btn_bg"
+                    android:text="Upload"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
 <!--                IMPLEMENT PHOTO UPLOAD      -->
+                <ImageView
+                    android:id = "@+id/imagePreview"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    />
 
                 <Button
                     android:id="@+id/btnadd"
