@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LostAndFound</string>
     <string name="login">Login</string>
@@ -12,8 +13,20 @@
     <string name="resend_authentication_email">Resend authentication email</string>
     <string name="proceed">Proceed</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="reportlost">Report Lost Item</string>
-    <string name="reportlostdsc">Give details for an item you have Lost</string>
-    <string name="reportfound">Report Found Item</string>
-    <string name="reportfounddsc">Give details for an item you have Found</string>
+    <string name="reportlost">Add Lost Item</string>
+    <string name="reportlostdsc">Give details for Lost item that has been found</string>
+    <string name="reportfound">View Found Items</string>
+    <string name="reportfounddsc">View list of found items</string>
+    <string name="itemName">Item:</string>
+    <string name="description">Item description:</string>
+    <string name="dateFound">Date found:</string>
+    <string name="locationFound">Found on train/bus route:</string>
+    <string name="currentLocation">Collection office:</string>
+    <string name="desc">Description </string>
+    <string name="category">Category </string>
+    <string name="date">Date found </string>
+    <string name="lostItemName">Lost Item </string>
+    <string name="collection">Office for collection </string>
+    <string name="add">Save lost Item </string>
+    <string name="upload">Upload image </string>
 </resources>

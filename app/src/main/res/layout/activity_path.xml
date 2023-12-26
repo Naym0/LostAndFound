@@ -58,7 +58,7 @@
                         android:layout_marginBottom="10dp"/>
 
                     <Button
-                        android:id="@+id/proceedBA"
+                        android:id="@+id/proceedAdd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/btn_bg"
@@ -111,7 +111,7 @@
                         android:layout_marginBottom="10dp"/>
 
                     <Button
-                        android:id="@+id/proceedBsc"
+                        android:id="@+id/proceedView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/btn_bg"
