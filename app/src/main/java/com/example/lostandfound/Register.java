@@ -105,6 +105,7 @@ public class Register extends AppCompatActivity {
                                 Map<String, Object> User = new HashMap<>();
                                 User.put("name", name);
                                 User.put("email", email);
+                                User.put("account", "user");
                                 if (radiogroup.getCheckedRadioButtonId() == R.id.radioFemale){
                                     User.put("gender", "Female");
                                 } else {

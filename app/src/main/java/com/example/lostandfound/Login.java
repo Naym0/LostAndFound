@@ -160,7 +160,11 @@ public class Login extends AppCompatActivity {
 
     private void isEmailVerified(){
         if(mfirebaseAuth.getCurrentUser().isEmailVerified()){
-            startActivity(new Intent(Login.this, Path.class));
+            if(mfirebaseAuth.getCurrentUser().getEmail() == "Admin@lostandfound.com")
+                startActivity(new Intent(Login.this, Path.class));
+            else
+                startActivity(new Intent(Login.this, LostItems.class));
+
             Toast.makeText(Login.this, "Successful Login", Toast.LENGTH_SHORT).show();
             finish();
             finish();

@@ -41,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser != null && currentUser.isEmailVerified()){
+            if(mfirebaseAuth.getCurrentUser().getEmail() == "Admin@lostandfound.com")
+                startActivity(new Intent(MainActivity.this, Path.class));
+            else
+                startActivity(new Intent(MainActivity.this, LostItems.class));
+
             Log.d(TAG, "........................................OnAuthStateChanged: SIGNED IN: " + currentUser.getEmail());
-            Intent intent = new Intent(MainActivity.this, Path.class);
             finish();
-            startActivity(intent);
         }
         else{
             Log.d(TAG, "........................................OnAuthStateChanged: NOPE: ");
