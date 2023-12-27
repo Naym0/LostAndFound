@@ -160,7 +160,7 @@ public class Login extends AppCompatActivity {
 
     private void isEmailVerified(){
         if(mfirebaseAuth.getCurrentUser().isEmailVerified()){
-            if(mfirebaseAuth.getCurrentUser().getEmail() == "Admin@lostandfound.com")
+            if(mfirebaseAuth.getCurrentUser().getEmail().trim().toLowerCase().equals("nmuswanya@gmail.com"))
                 startActivity(new Intent(Login.this, Path.class));
             else
                 startActivity(new Intent(Login.this, LostItems.class));

@@ -167,22 +167,8 @@
                     android:layout_height="100dp"
                     />
 
-                <Button
-                    android:id="@+id/btnadd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginRight="25dp"
-                    android:background="@drawable/btn_bg"
-                    android:text="@string/add"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"/>
-
                 <ProgressBar
-                    android:id="@+id/pb_register"
+                    android:id="@+id/pb_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -192,6 +178,21 @@
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
                     android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btnadd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/btn_bg"
+                    android:text="@string/add"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
