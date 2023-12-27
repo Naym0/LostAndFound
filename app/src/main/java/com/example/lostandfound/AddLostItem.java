@@ -39,6 +39,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddLostItem extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
     EditText rname, rdesc, rdate, rlocation;
@@ -180,7 +181,8 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void uploadToFirebase(byte[] Byte, Map Item){
-        final StorageReference imageRef = storageReference.child(("images/"+System.currentTimeMillis()));
+        UUID id = UUID.randomUUID();
+        final StorageReference imageRef = storageReference.child(("images/"+id));
 
         imageRef.putBytes(Byte).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -189,13 +191,14 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                     @Override
                     public void onSuccess(Uri uri) {
 
-                        Item.put("image", imageRef.getDownloadUrl().toString());
+                        Item.put("image", id.toString());
                         collectionReference.add(Item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Toast.makeText(AddLostItem.this, "Item saved Successfully", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                                //TODO: Refresh the form
+//                                finish();
+                                startActivity(new Intent(AddLostItem.this, AddLostItem.class));
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override

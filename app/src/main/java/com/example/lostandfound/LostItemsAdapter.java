@@ -4,11 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -39,10 +45,12 @@ public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, L
         holder.category.setText(model.getCategory());
         holder.dateFound.setText(model.getDate());
         holder.location.setText(model.getLocation());
+        holder.image.setImageBitmap(model.getImage());
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView item, description, category, dateFound, location;
+        ImageView image;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -51,6 +59,7 @@ public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, L
             category = itemView.findViewById(R.id.categoryA);
             dateFound = itemView.findViewById(R.id.dateA);
             location = itemView.findViewById(R.id.collectionA);
+            image = itemView.findViewById(R.id.img_obj);
         }
     }
 }
