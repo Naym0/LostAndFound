@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>Electronic</item>
+        <item>Bags</item>
+        <item>Wallet/Purse</item>
+        <item>Jewellery</item>
+        <item>Identification documents</item>
+        <item>Bank cards</item>
+        <item>Clothing</item>
+        <item>Shoes</item>
+        <item>Watches</item>
+        <item>Bikes</item>
+        <item>Keys</item>
+        <item>Glasses</item>
+        <item>Bottles</item>
+        <item>Books</item>
+        <item>Miscellaneous</item>
+    </string-array>
+</resources>
