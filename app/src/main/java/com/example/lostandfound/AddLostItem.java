@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
     byte[] imageByte;
     Uri stored;
     FirebaseAuth mfirebaseAuth;
+    ProgressBar progressBar;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference collectionReference = db.collection("Items");
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -66,6 +68,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
         rdate = findViewById(R.id.dateFoundText);
         rlocation = findViewById(R.id.collectionText);
         imageView = findViewById(R.id.imagePreview);
+        progressBar = findViewById(R.id.pb_add);
 
         setSpinner();
         spinner.setOnItemSelectedListener(this);
@@ -108,6 +111,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onClick(View v){
 
+                progressBar.setVisibility(View.VISIBLE);
                 String itemName = rname.getText().toString();
                 String desc = rdesc.getText().toString().trim();
                 String category = String.valueOf(spinner.getSelectedItem()).trim();
@@ -195,9 +199,10 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                         collectionReference.add(Item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(AddLostItem.this, "Item saved Successfully", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-//                                finish();
+                                finish();
                                 startActivity(new Intent(AddLostItem.this, AddLostItem.class));
                             }
                         }).addOnFailureListener(new OnFailureListener() {
