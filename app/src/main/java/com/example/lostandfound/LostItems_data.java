@@ -1,15 +1,16 @@
 package com.example.lostandfound;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 
 public class LostItems_data {
     String item,description, category, dateFound, location, image;
-    Uri val;
+    Uri uri;
     Bitmap bitmap;
     FirebaseStorage storageReference = FirebaseStorage.getInstance();
 
@@ -30,36 +31,15 @@ public class LostItems_data {
         return item;
     }
 
-    public String getDesc() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
     public String getCategory() {
         return category;
     }
 
-    public String getDate() {
-        return dateFound;
-    }
+    public String getDateFound() { return dateFound; }
 
     public String getLocation() { return location; }
 
-    public Bitmap getImage() {
-//        storageReference.getReference("images/"+image).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(Task<Uri> task) {
-//                val = task.getResult();
-//                Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Val", ".................................. "+val);
-//            }
-//        });
-
-        storageReference.getReference("images/"+image).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-            }
-        });
-
-        return bitmap;
-    }
+    public String getImage() { return image; }
 }

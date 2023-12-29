@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser != null && currentUser.isEmailVerified()){
-            if(mfirebaseAuth.getCurrentUser().getEmail() == "Admin@lostandfound.com")
+            if(currentUser.getEmail().trim().toLowerCase().equals("nmuswanya@gmail.com"))
                 startActivity(new Intent(MainActivity.this, Path.class));
             else
                 startActivity(new Intent(MainActivity.this, LostItems.class));

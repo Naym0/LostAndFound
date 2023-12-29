@@ -1,6 +1,10 @@
 package com.example.lostandfound;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.FirebaseStorage;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, LostItemsAdapter.MyViewHolder>  {
+    FirebaseStorage storageReference = FirebaseStorage.getInstance();
+    Bitmap bitmap;
+    String path = "images/";
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -41,11 +54,18 @@ public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, L
     @Override
     protected void onBindViewHolder(MyViewHolder holder, int position, LostItems_data model) {
         holder.item.setText(model.getItem());
-        holder.description.setText(model.getDesc());
+        holder.description.setText(model.getDescription());
         holder.category.setText(model.getCategory());
-        holder.dateFound.setText(model.getDate());
+        holder.dateFound.setText(model.getDateFound());
         holder.location.setText(model.getLocation());
-        holder.image.setImageBitmap(model.getImage());
+        storageReference.getReference(path+model.getImage()).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                holder.image.setImageBitmap(bitmap);
+                holder.image.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
