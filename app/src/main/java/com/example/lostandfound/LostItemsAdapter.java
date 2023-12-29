@@ -1,10 +1,7 @@
 package com.example.lostandfound;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +10,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.FirebaseStorage;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 
 public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, LostItemsAdapter.MyViewHolder>  {
     FirebaseStorage storageReference = FirebaseStorage.getInstance();

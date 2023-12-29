@@ -2,10 +2,7 @@ package com.example.lostandfound;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 
 public class LostItems_data {
