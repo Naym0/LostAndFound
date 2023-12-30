@@ -43,6 +43,7 @@ public class LostItems extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rview_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(null);
     }
 
     @Override
