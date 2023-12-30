@@ -1,7 +1,6 @@
 package com.example.lostandfound;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,8 +41,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class AddLostItem extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
-    EditText rname, rdesc, rdate, rlocation;
-    Spinner spinner;
+    EditText rname, rdesc, rdate;
+    Spinner spinner1, spinner2;
     Button submit, takePic;
     ImageView imageView;
     byte[] imageByte;
@@ -66,12 +64,14 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
         rname = findViewById(R.id.lostItemNameText);
         rdesc = findViewById(R.id.descriptionText);
         rdate = findViewById(R.id.dateFoundText);
-        rlocation = findViewById(R.id.collectionText);
         imageView = findViewById(R.id.imagePreview);
         progressBar = findViewById(R.id.pb_add);
 
-        setSpinner();
-        spinner.setOnItemSelectedListener(this);
+        setCategorySpinner();;
+        spinner1.setOnItemSelectedListener(this);
+
+        setLocationSpinner();;
+        spinner2.setOnItemSelectedListener(this);
 
         ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -114,9 +114,9 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                 progressBar.setVisibility(View.VISIBLE);
                 String itemName = rname.getText().toString();
                 String desc = rdesc.getText().toString().trim();
-                String category = String.valueOf(spinner.getSelectedItem()).trim();
+                String category = String.valueOf(spinner1.getSelectedItem()).trim();
                 String date = rdate.getText().toString().trim();
-                String location = rlocation.getText().toString().trim();
+                String location = String.valueOf(spinner2.getSelectedItem()).trim();
 
                 if(itemName.isEmpty()){
                     rname.setError("Please enter item name");
@@ -128,15 +128,15 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                 }
                 else if(category.isEmpty()){
                     Toast.makeText(AddLostItem.this, "Please select the item category", Toast.LENGTH_SHORT).show();
-                    spinner.requestFocus();
+                    spinner1.requestFocus();
                 }
                 else if(date.isEmpty()){
                     rdate.setError("Please enter the date the item was found");
                     rdate.requestFocus();
                 }
                 else if(location.isEmpty()){
-                    rlocation.setError("Please enter the collection office");
-                    rlocation.requestFocus();
+                    Toast.makeText(AddLostItem.this, "Please select the collection office", Toast.LENGTH_SHORT).show();
+                    spinner2.requestFocus();
                 }
                 else if(imageByte == null){
                     Toast.makeText(AddLostItem.this, "Please take a picture for upload", Toast.LENGTH_SHORT).show();
@@ -170,9 +170,9 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
         //DOESN'T NEED IMPLEMENTATION
     }
 
-    public void setSpinner(){
+    public void setCategorySpinner(){
         // Spinner click listener
-        spinner = findViewById(R.id.spinner1);
+        spinner1 = findViewById(R.id.spinner1);
 
         // Creating adapter for spinner using resource file
         ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this, R.array.categories_array, android.R.layout.simple_spinner_item);
@@ -181,7 +181,21 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        spinner1.setAdapter(dataAdapter);
+    }
+
+    public void setLocationSpinner(){
+        // Spinner click listener
+        spinner2 = findViewById(R.id.spinner2);
+
+        // Creating adapter for spinner using resource file
+        ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this, R.array.locations_array, android.R.layout.simple_spinner_item);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner2.setAdapter(dataAdapter);
     }
 
     private void uploadToFirebase(byte[] Byte, Map Item){
@@ -217,9 +231,5 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
             }
         });
     }
-    private String getFileExtension(Uri fileUri){
-        ContentResolver resolver = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(resolver.getType(fileUri));
-    }
+
 }

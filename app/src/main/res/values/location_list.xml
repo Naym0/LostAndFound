@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="locations_array">
+        <item>Holzmarktstraße Customer Center</item>
+        <item>Spandau Customer Center</item>
+        <item>Marzahn Customer Center</item>
+        <item>Köpenick Customer Center</item>
+        <item>Hermannplatz Customer Center</item>
+        <item>Alexanderplatz Customer Center</item>
+        <item>Rathaus Steglitz Customer Center</item>
+        <item>Alt-Tegel Customer Center</item>
+        <item>Zoologischer Garten Customer Center</item>
+    </string-array>
+</resources>

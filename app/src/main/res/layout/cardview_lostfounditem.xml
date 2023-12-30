@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="left"
-                android:text="Category"
+                android:text="Category:"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:paddingStart="5dp"

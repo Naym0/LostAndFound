@@ -126,15 +126,12 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"/>
 
-                <EditText
-                    android:id="@+id/collectionText"
+                <Spinner
+                    android:id="@+id/spinner2"
                     android:layout_width="match_parent"
-                    android:layout_height="47dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColor="@color/colorAccent"/>
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"/>
 
                 <TextView
                     android:id="@+id/upload"
