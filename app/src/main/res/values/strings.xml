@@ -18,7 +18,7 @@
     <string name="reportfound">View Found Items</string>
     <string name="reportfounddsc">View list of found items</string>
     <string name="itemName">Item:</string>
-    <string name="description">Item description:</string>
+    <string name="description">Description:</string>
     <string name="dateFound">Date found:</string>
     <string name="locationFound">Found on train/bus route:</string>
     <string name="currentLocation">Collection office:</string>

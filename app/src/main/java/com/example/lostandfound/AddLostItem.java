@@ -1,6 +1,7 @@
 package com.example.lostandfound;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -36,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -43,7 +46,7 @@ import java.util.UUID;
 public class AddLostItem extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
     EditText rname, rdesc, rdate;
     Spinner spinner1, spinner2;
-    Button submit, takePic;
+    Button submit, takePic, pickDate;
     ImageView imageView;
     byte[] imageByte;
     Uri stored;
@@ -104,6 +107,40 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                 else{
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
                 }
+            }
+        });
+
+        pickDate = findViewById(R.id.pickDate);
+        pickDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get calendar instance
+                final Calendar c = Calendar.getInstance();
+
+                // on below line we are getting
+                // our day, month and year.
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                // create a variable for date picker dialog.
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        AddLostItem.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // on below line we are setting date to our text view.
+                                rdate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        },
+                        // on below line we are passing year,
+                        // month and day for selected date in our date picker.
+                        year, month, day);
+                // at last we are calling show to
+                // display our date picker dialog.
+                datePickerDialog.show();
             }
         });
 
