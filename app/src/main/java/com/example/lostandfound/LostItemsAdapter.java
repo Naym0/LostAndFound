@@ -45,9 +45,11 @@ public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, L
         holder.category.setText(model.getCategory());
         holder.dateFound.setText(model.getDateFound());
         holder.location.setText(model.getLocation());
+        //get image reference and retrieve it for display
         storageReference.getReference(path+model.getImage()).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
+                //convert it to Bitmap for display in ImageView
                 bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                 holder.image.setImageBitmap(bitmap);
                 holder.image.setVisibility(View.VISIBLE);
@@ -61,6 +63,7 @@ public class LostItemsAdapter extends FirestoreRecyclerAdapter<LostItems_data, L
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            //get referenced views from layout
             item = itemView.findViewById(R.id.itemNameA);
             description = itemView.findViewById(R.id.descA);
             category = itemView.findViewById(R.id.categoryA);

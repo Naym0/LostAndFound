@@ -16,8 +16,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class Profile extends AppCompatActivity {
     TextView name, email, gender;
     private static final String TAG = "Profile Activity!!!!!";
+    //get Firebase instance
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //get user ID of currently logged in user
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    //get Firestore document with additional user data
     private DocumentReference ref = db.collection("User").document(userID);
 
     @Override

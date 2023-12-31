@@ -67,6 +67,7 @@ public class Register extends AppCompatActivity {
                 String pass = rpass.getText().toString().trim();
                 String cpass = rcpass.getText().toString().trim();
 
+                //check that no field is left empty
                 if(name.isEmpty()){
                     rname.setError("Please enter your name");
                     rname.requestFocus();
@@ -92,6 +93,7 @@ public class Register extends AppCompatActivity {
                     remail.requestFocus();
                 }
                 else if(!(email.isEmpty() && pass.isEmpty())){
+                    //save user data into Firebase Auth
                     mfirebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
@@ -101,6 +103,7 @@ public class Register extends AppCompatActivity {
                                 SendVerificationEmail();
 
                                 userID = mfirebaseAuth.getCurrentUser().getUid();
+                                //save user data into Firestore using corresponding Firebase Auth user ID
                                 DocumentReference documentReference = db.collection("User").document(userID);
                                 Map<String, Object> User = new HashMap<>();
                                 User.put("name", name);
@@ -136,6 +139,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        //resend verification email
         resendemail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +158,7 @@ public class Register extends AppCompatActivity {
                         String email1 = resetemail.getText().toString().trim();
                         String pass1 = resetpass.getText().toString();
 
+                        //check that no field is empty
                         if ((email1.isEmpty()) || (pass1.isEmpty())) {
                             Toast.makeText(Register.this, "Both fields must be filled in!", Toast.LENGTH_LONG).show();
                         } else {
@@ -168,6 +173,7 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    //function to check only valid email addresses are entered
     public static boolean isEmailValid(String email) {
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);

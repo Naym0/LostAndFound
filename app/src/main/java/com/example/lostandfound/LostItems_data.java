@@ -1,15 +1,7 @@
 package com.example.lostandfound;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
-
-import com.google.firebase.storage.FirebaseStorage;
-
 public class LostItems_data {
     String item,description, category, dateFound, location, image;
-    Uri uri;
-    Bitmap bitmap;
-    FirebaseStorage storageReference = FirebaseStorage.getInstance();
 
     public LostItems_data(){
         //Empty constructor needed for Firebase to create objects from db documents

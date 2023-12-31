@@ -82,10 +82,13 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
+                            //get result from camera instance
                             Intent data = result.getData();
+                            //convert to Bitmap for display
                             Bitmap picture = (Bitmap) data.getExtras().get("data");
                             imageView.setImageBitmap(picture);
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            //compress it for save in Firebase
                             picture.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                             imageByte = baos.toByteArray();
                         }
@@ -99,12 +102,13 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
         takePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //check if camera permission is granted, it yes, launch camera
                 if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
                     Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     cameraLauncher.launch(cameraIntent);
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, stored);
                 }
-                else{
+                else{ //request permission
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
                 }
             }
@@ -117,8 +121,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                 // get calendar instance
                 final Calendar c = Calendar.getInstance();
 
-                // on below line we are getting
-                // our day, month and year.
+                // on below line we are getting our day, month and year.
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
@@ -135,11 +138,9 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
 
                             }
                         },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
+                        // pass year, month and day for selected date in our date picker.
                         year, month, day);
-                // at last we are calling show to
-                // display our date picker dialog.
+                // display date picker dialog.
                 datePickerDialog.show();
             }
         });
@@ -155,6 +156,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                 String date = rdate.getText().toString().trim();
                 String location = String.valueOf(spinner2.getSelectedItem()).trim();
 
+                //check that no field is left empty
                 if(itemName.isEmpty()){
                     rname.setError("Please enter item name");
                     rname.requestFocus();
@@ -180,6 +182,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                 }
                 else if(!(itemName.isEmpty() && desc.isEmpty() && category.isEmpty() && date.isEmpty() && location.isEmpty())) {
 
+                    //create hashmap of the data to be saved
                     Map<String, Object> Item = new HashMap<>();
                     Item.put("item", itemName);
                     Item.put("description", desc);
@@ -236,9 +239,11 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void uploadToFirebase(byte[] Byte, Map Item){
+        //create a random ID to save image in Firebase Storage
         UUID id = UUID.randomUUID();
         final StorageReference imageRef = storageReference.child(("images/"+id));
 
+        //save images
         imageRef.putBytes(Byte).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -247,6 +252,7 @@ public class AddLostItem extends AppCompatActivity implements AdapterView.OnItem
                     public void onSuccess(Uri uri) {
 
                         Item.put("image", id.toString());
+                        //save image ID into corresponding Firestore record of lost item
                         collectionReference.add(Item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {

@@ -17,8 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     Animation logo;
     ImageView image;
-    FirebaseAuth mfirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
     private static final String TAG = "Main Activity!!!!!";
     private FirebaseAuth mAuth;
 
@@ -40,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        //check if user session is still active and email is verified to restore state
         if(currentUser != null && currentUser.isEmailVerified()){
             if(currentUser.getEmail().trim().toLowerCase().equals("nmuswanya@gmail.com"))
                 startActivity(new Intent(MainActivity.this, Path.class));
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //navigation to either login or registration page
     public void onClick(View v){
         if (v.getId() == R.id.btnregistermain){
             Intent intent = new Intent(this, Register.class);

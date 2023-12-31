@@ -29,6 +29,7 @@ public class Path extends AppCompatActivity {
         return true;
     }
 
+    //navigation options in threee dot menu in taskbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -46,6 +47,7 @@ public class Path extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //navigation to either add a new item or view the present ones
     public void Proceed(View v){
         if (v.getId() == R.id.proceedAdd){
             Intent intent = new Intent(this, AddLostItem.class);

@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
                 String email = lemail.getText().toString().trim();
                 String pass = lpass.getText().toString().trim();
 
+                //check that no field is left empty
                 if(email.isEmpty()){
                     lemail.setError("Please enter a valid email address");
                     lemail.requestFocus();
@@ -123,6 +124,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //to dismiss dialog box
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick (DialogInterface dialog,int which){
